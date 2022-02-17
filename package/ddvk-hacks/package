@@ -6,15 +6,15 @@ archs=(rm1 rm2)
 pkgnames=(ddvk-hacks)
 pkgdesc="Enhance Xochitl with additional features"
 url=https://github.com/ddvk/remarkable-hacks
-pkgver=29.01-1
-timestamp=2021-12-15T19:55:50Z
+pkgver=29.01-2
+timestamp=2022-02-17T14:11:30Z
 section="readers"
 maintainer="Mattéo Delabre <spam@delab.re>"
 license=MIT
 flags=(nostrip)
 
-source=(https://github.com/ddvk/remarkable-hacks/archive/9b6b8853b2abc349dfb43f301c2c26055b81033b.zip)
-sha256sums=(2347a779dca7d0d7315e850018630f8af0a37e108209fc31a94eb2566d1108b6)
+source=(https://github.com/ddvk/remarkable-hacks/archive/00bb90eb54aebe765b2fb229da607887d6c6e0ac.zip)
+sha256sums=(111678f8a139eeb405ad36d4f43c575b05245f0c2723282ac615f54d424fd9c8)
 
 _patches_dir="/opt/share/ddvk-hacks"
 _xochitl_path="/usr/bin/xochitl"
@@ -46,6 +46,7 @@ package() {
         install -D -m 644 -t "$pkgdir$_patches_dir" "$srcdir"/patches/2102356_rm2/patch_27.2.05
         install -D -m 644 -t "$pkgdir$_patches_dir" "$srcdir"/patches/2103379_rm2/patch_28.2.02
         install -D -m 644 -t "$pkgdir$_patches_dir" "$srcdir"/patches/2110442_rm2/patch_29.2.01
+        install -D -m 644 -t "$pkgdir$_patches_dir" "$srcdir"/patches/2121527_rm2/patch_30.2.04
     fi
 }
 
@@ -115,6 +116,11 @@ configure() {
     elif [[ $arch = rm2 ]]; then
         device="reMarkable 2"
         case "$build_date" in
+            "20220202133838" )
+                patch_version="30.2.04"
+                original_hash="8728cf8a2677a1b458f8e1ed665f8c1358568f7f"
+                xochitl_version="2.12.1.527"
+                ;;
             "20211208075454")
                 patch_version="29.2.01"
                 original_hash="ad88de508a3c7da7f1ff6a9d394806c5d987026d"
